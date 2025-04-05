@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="Clothes.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="logo">Your Logo</div>
+        <input type="text" class="search-bar" placeholder="Search products...">
+        <button class="search-button">Search</button>
+        <div class="icon-container">
+            <a href="#" class="icon user-icon">
+                <i class="fa fa-user"></i>
+                <span>User</span>
+            </a>
+            <a href="cart.html" class="icon cart-icon" style="position: relative;">
+                <i class="fa fa-shopping-cart"></i>
+                <span>Cart</span>
+                <span id="cart-badge" class="cart-badge">0</span>
+            </a>
+            
+            </a>
+        </div>
+    </header>
+
+    <!-- Sidebar and Main Content -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h3>Filters</h3>
+
+            <!-- Delivery Day Section -->
+            <div class="filter-section">
+                <h4>Delivery Day</h4>
+                <ul>
+                    <li><input type="checkbox"> Get It Today</li>
+                    <li><input type="checkbox"> Get It by Tomorrow</li>
+                    <li><input type="checkbox"> Get It in 2 Days</li>
+                </ul>
+            </div>
+
+            <!-- Category Section -->
+            <div class="filter-section">
+                <h4>Category</h4>
+                <li>Clothing & Accessories</li>
+                <li>Fashion</li>
+                <li>Western Wear</li>
+                <li>Tops, T-Shirts & Shirts</li>
+                <li>T-Shirts</li>
+                <li>Shirts</li>
+                <li>Polos</li>
+            </div>
+
+            <!-- Brand Section -->
+            <div class="filter-section">
+                <h4>Brand</h4>
+                <ul>
+                    <li><input type="checkbox" checked> Allen Solly</li>
+                    <li><input type="checkbox" checked> Janasya</li>
+                    <li><input type="checkbox" checked> Van Heusen</li>
+                    <li><input type="checkbox"> Bewakoof</li>
+                    <li><input type="checkbox"> Amazon Brand - Symbol</li>
+                    <li><input type="checkbox"> London Hills</li>
+                </ul>
+            </div>
+
+            <!-- Price Section -->
+            <div class="filter-section">
+                <h4>Price</h4>
+                <label for="priceRange">Select Price Range:</label>
+                <input type="range" id="priceRange" name="priceRange" min="600" max="1550" step="10" value="600" oninput="updatePriceDisplay(this.value)">
+                <span id="priceDisplay">₹600</span> – ₹1,550+
+                <button onclick="filterProducts()">Filter</button>
+            </div>
+        </aside>
+<script>
+ // Dynamically update the displayed price value as the slider moves
+function updatePriceDisplay(value) {
+    document.getElementById("priceDisplay").innerText = `₹${value}`;
+}
+
+// Filter products based on the selected price range
+function filterProducts() {
+    const selectedPrice = parseInt(document.getElementById("priceRange").value, 10);
+    const products = document.querySelectorAll(".grid .product-image");
+
+    products.forEach(product => {
+        const productPrice = parseInt(product.getAttribute("data-price"), 10);
+
+        // Show products within the price range, hide others
+        if (productPrice >= selectedPrice) {
+            product.style.display = "block"; // Display product
+        } else {
+            product.style.display = "none"; // Hide product
+        }
+    });
+
+    console.log(`Products under ₹${selectedPrice} are now displayed.`);
+}
+
+</script>
+        <!-- Main Content -->
+        <section class="content">
+            <h2>Results</h2>
+            <div class="grid">
+
+                <!-- Product Cards -->
+                <div class="product-image" data-price="500">
+                    <div class="image-placeholder"><img src="1.png" width="145" onclick="showPopup('Printed Straight Kurta', '₹500', '1.png')"></div>
+                    <h6>Printed Straight Kurta</h6>
+                    <p>₹500</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                <div class="product-image" data-price="699">
+                    <div class="image-placeholder"><img src="2.png" width="145" onclick="showPopup('Cotton Printed Top', '₹699', '2.png')"></div>
+                    <h6>Cotton Printed Top</h6>
+                    <p>₹699</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                <div class="product-image"  data-price="799">
+                    <div class="image-placeholder"><img src="3.png" width="110" onclick="showPopup('Slim Fit Shirt', '₹799', '3.png')"></div>
+                    <h6>Slim Fit Shirt</h6>
+                    <p>₹799</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                <div class="product-image"  data-price="1199">
+                    <div class="image-placeholder"><img src="4.png" width="130" onclick="showPopup('Denim Jacket', '₹1199', '4.png')"></div>
+                    <h6>Denim Jacket</h6>
+                    <p>₹1199</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                <div class="product-image"  data-price="599">
+                    <div class="image-placeholder"><img src="5.png" width="170" onclick="showPopup('Checked Shirt', '₹599', '5.png')"></div>
+                    <h6>Checked Shirt</h6>
+                    <p>₹599</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                <div class="product-image" data-price="849">
+                    <div class="image-placeholder"><img src="6.png" width="150" onclick="showPopup('Floral Summer Dress', '₹849', '6.png')"></div>
+                    <h6>Floral Summer Dress</h6>
+                    <p>₹849</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                <div class="product-image"  data-price="499">
+                    <div class="image-placeholder"><img src="7.png" width="150" onclick="showPopup('Graphic T-Shirt', '₹499', '7.png')"></div>
+                    <h6>Graphic T-Shirt</h6>
+                    <p>₹499</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                <div class="product-image"  data-price="1099">
+                    <div class="image-placeholder"><img src="8.png" width="130" onclick="showPopup('Linen Trousers', '₹1099', '8.png')"></div>
+                    <h6>Linen Trousers</h6>
+                    <p>₹1099</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                <div class="product-image"  data-price="1299">
+                    <div class="image-placeholder"><img src="9.png" width="130" onclick="showPopup('Hooded Sweatshirt', '₹1299', '9.png')"></div>
+                    <h6>Hooded Sweatshirt</h6>
+                    <p>₹1299</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                <div class="product-image"  data-price="1550">
+                    <div class="image-placeholder"><img src="10.png" width="120" onclick="showPopup('Casual Blazer', '₹1550', '10.png')"></div>
+                    <h6>Casual Blazer</h6>
+                    <p>₹1550</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+    <!-- Popup Section -->
+    <div id="popup" class="popup" style="display: none;">
+        <div class="popup-content">
+            <span class="close-button" onclick="hidePopup()">×</span>
+            <img id="popup-image" src="1.png" alt="Product Image" />
+            <h3 id="popup-title"></h3>
+            <p><strong>Price:</strong> <span id="popup-price"></span></p>
+
+            <label for="size-buttons">Select Size:</label>
+            <div id="size-buttons" class="size-selection">
+                <button class="size-button" onclick="selectSize('S')">S</button>
+                <button class="size-button" onclick="selectSize('M')">M</button>
+                <button class="size-button" onclick="selectSize('L')">L</button>
+                <button class="size-button" onclick="selectSize('XL')">XL</button>
+                <button class="size-button" onclick="selectSize('XXL')">XXL</button>
+            </div>
+            <button class="buy-now" onclick="buyNow()">Buy Now</button>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        function showPopup(title, price, imageSrc) {
+            const popup = document.getElementById('popup');
+            document.getElementById('popup-title').innerText = title;
+            document.getElementById('popup-price').innerText = price;
+            document.getElementById('popup-image').src = imageSrc;
+            popup.style.display = 'block';
+        }
+
+        function hidePopup() {
+            const popup = document.getElementById('popup');
+            popup.style.display = 'none';
+        }
+
+        let selectedSize = "";
+
+        function selectSize(size) {
+            const buttons = document.querySelectorAll(".size-button");
+            buttons.forEach(button => button.classList.remove("active"));
+            const selectedButton = [...buttons].find(button => button.innerText === size);
+            if (selectedButton) selectedButton.classList.add("active");
+            selectedSize = size;
+        }
+
+        function buyNow() {
+            if (selectedSize === "") {
+                alert("Please select a size before proceeding!");
+            } else {
+                alert(`You selected size: ${selectedSize}. Proceeding to checkout!`);
+            }
+        }
+    </script>
+
+    <footer class="footer">
+        <p>&copy; 2023 Your Company. All rights reserved.</p>
+    </footer>
+    <script>
+        // Load cart from localStorage or create empty array
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    
+        // Update cart badge
+        function updateCartBadge() {
+            const badge = document.getElementById("cart-badge");
+            if (cart.length > 0) {
+                badge.style.display = "inline-block";
+                badge.textContent = cart.length;
+            } else {
+                badge.style.display = "none";
+            }
+        }
+    
+        // Add item to cart
+        function addToCart(productName, productPrice) {
+            cart.push({ name: productName, price: productPrice });
+            localStorage.setItem("cart", JSON.stringify(cart));
+            updateCartBadge();
+            alert(`${productName} added to cart!`);
+        }
+    
+        // Add event listeners to all Add to Cart buttons
+        document.querySelectorAll(".add-to-cart").forEach(button => {
+            button.addEventListener("click", function () {
+                const productCard = this.closest(".product-image");
+                const name = productCard.querySelector("h6").innerText;
+                const price = productCard.querySelector("p").innerText;
+                addToCart(name, price);
+            });
+        });
+    
+        // Initialize cart badge on page load
+        document.addEventListener("DOMContentLoaded", updateCartBadge);
+    </script>
+    
+
+</body>
+</html>
+
+
+<style>
+    /* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #232f3e;
+    color: white;
+    padding: 10px 20px;
+}
+.icon-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-left: 120px;
+}
+.cart-badge {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 4px 6px;
+    border-radius: 50%;
+}
+.logo {
+    font-size: 1.5em;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+}
+
+.search-bar {
+    width: 50%;
+    padding: 5px;
+}
+
+.search-button {
+    padding: 6px 10px;
+    background-color: #f0c14b;
+    border: none;
+    cursor: pointer;
+}
+
+/* Main Container */
+.main-container {
+    display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 20%;
+    background-color: #f3f3f3;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+    font-family: Arial, sans-serif;
+}
+
+/* Filter Section */
+.filter-section {
+    margin-bottom: 20px;
+}
+
+.filter-section h4 {
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.filter-section ul {
+    list-style: none;
+    padding-left: 10px;
+}
+
+.filter-section li {
+    margin-bottom: 5px;
+}
+
+.price-slider {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.go-button {
+    display: block;
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #f0c14b;
+    border: none;
+    cursor: pointer;
+}
+
+/* Content Area */
+.content {
+    width: 80%;
+    padding: 20px;
+}
+
+/* Grid for Products */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+/* Individual Product Card */
+.product {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.image-placeholder {
+    background-color: #f3f3f3;
+    height: 200px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+}
+.add-to-cart {
+    display: block;
+    padding: 10px 15px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px; /* Adjust spacing */
+  }
+  /* Popup Styling */
+/* Popup Styles */
+.popup {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 350px;
+    background-color: white;
+    border: 1px solid #ddd;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.popup-content {
+    text-align: center;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #333;
+}
+
+.popup img {
+    width: 150px;
+    margin-bottom: 15px;
+}
+
+.popup h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #007BFF;
+}
+
+.popup p {
+    font-size: 14px;
+    color: #666;
+}
+
+.buy-now {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+/* Size Selection Buttons */
+.size-selection {
+    margin: 15px 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.size-button {
+    padding: 10px 15px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+}
+
+.size-button:hover {
+    background-color: #007BFF;
+    color: white;
+    border-color: #007BFF;
+}
+
+.size-button.active {
+    background-color: #007BFF;
+    color: white;
+    border-color: #0056b3;
+}
+/* Icons Container Styling */
+.icon-container {
+    display: flex;
+    align-items: center;
+    gap: 50px; /* Add spacing between icons */
+    margin-left: 30px;
+    margin-right: 50px;
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.icon i {
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+.icon span {
+    font-size: 14px;
+    color: white;
+}
+
+.icon:hover {
+    color: #f1c40f;
+}
+.cart-badge {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+    font-weight: bold;
+    display: none;
+}
+
+</style>
