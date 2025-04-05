@@ -242,3 +242,126 @@ ul a {
 .see-more-btn{
     background-color: see-more-btn;
 }
+
+/* Cart Styles */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #28a745;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    animation: slideIn 0.3s ease-out;
+    z-index: 1000;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.cart-container {
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.cart-item {
+    position: relative;
+    overflow: hidden;
+}
+
+.cart-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+    transform: translateX(-100%);
+    transition: 0.5s;
+}
+
+.cart-item:hover::before {
+    transform: translateX(100%);
+}
+
+.quantity-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.quantity-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255,255,255,0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+}
+
+.quantity-btn:focus:not(:active)::after {
+    animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(20, 20);
+        opacity: 0;
+    }
+}
+
+.remove-btn {
+    transition: all 0.3s ease;
+}
+
+.remove-btn:hover {
+    transform: scale(1.1);
+    color: #dc3545;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+    .cart-container {
+        margin: 20px 10px;
+        padding: 15px;
+    }
+    
+    .item-image {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .notification {
+        left: 20px;
+        right: 20px;
+        text-align: center;
+    }
+}
